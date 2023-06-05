@@ -1,0 +1,6 @@
+gymnasium == 0.27.1
+networkx
+numpy
+tianshou
+maturin
+matplotlib
