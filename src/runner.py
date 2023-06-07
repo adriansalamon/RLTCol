@@ -157,8 +157,10 @@ if __name__ == "__main__":
         max_episode_steps=args.max_steps,
     )
 
+    spec = gym.spec("GcpEnvMaxIters-v0")
+
     env = gym.make(
-        "GcpEnvMaxIters-v0",
+        spec,
         graph=graph,
         k=args.k,
         tabucol_iters=args.max_tabucol_iters,

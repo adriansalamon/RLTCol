@@ -45,8 +45,8 @@ The script will save the trained policy to the file specified by the `output` pa
 
 The RLTCol algorithm can be run using the `runner.py` script. The script takes a number of arguments, which can be found by running `python runner.py --help`.
 
-In order to run multiple jobs in parallel and/or in sequence, the `batch_runner.py` script can be used. The script takes a number of arguments, which can be found by running `batch_runner.py --help`. This script will run the RLTCol algorithm and save the results to individual files in the directory specified by the `output_dir` parameter. The results can then be summarized using the `result_summarizer.py` script.
+In order to run multiple jobs in parallel and/or in sequence, the `batch_runner.py` script can be used. The script takes a number of arguments, which can be found by running `python batch_runner.py --help`. This script will run the RLTCol algorithm and save the results to individual files in the directory specified by the `output_dir` parameter. The results can then be summarized using the `result_summarizer.py` script.
 
 # Credits
 
-The paper was written by Adrian Salamon (asalamon@kth.se) and Klara Sandström (klarasan@kth.se), supervised by [Stefano Markidis](https://www.kth.se/profile/markidis). The code was written by Adrian Salamon.
+The paper was written by Adrian Salamon (asalamon@kth.se) and Klara Sandström (klarasan@kth.se), supervised by [Stefano Markidis](https://www.kth.se/profile/markidis). 
