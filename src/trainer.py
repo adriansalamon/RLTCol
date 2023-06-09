@@ -44,23 +44,44 @@ if __name__ == "__main__":
         default=50,
         help="Number of epochs to train for",
     )
+    parser.add_argument(
+        "-N",
+        "--nodes",
+        type=int,
+        dest="nodes",
+        default=250,
+        help="Number of nodes in training graphs",
+    )
+    parser.add_argument(
+        "-P",
+        "--probability",
+        type=float,
+        dest="probability",
+        default=0.5,
+        help="Probability of edge between nodes in training graph",
+    )
+    parser.add_argument(
+        "-C",
+        "--colors",
+        type=int,
+        dest="colors",
+        default=24,
+        help="Number of colors allowed when training",
+    )
 
     tabucol_init = False
 
     args = parser.parse_args()
-
-    nodes = 250
-    probability = 0.5
-    colors = 24
 
     register(
         id="GcpEnvMaxIters-v0",
         entry_point="gcp_env:GcpEnv",
         max_episode_steps=args.max_steps,
     )
+    spec = gym.spec("GcpEnvMaxIters-v0")
 
     env = gym.make(
-        "GcpEnvMaxIters-v0",
+        spec,
         graph=nx.gnp_random_graph(nodes, probability),
         k=colors,
         tabucol_init=tabucol_init,
@@ -71,19 +92,19 @@ if __name__ == "__main__":
     train_envs = SubprocVectorEnv(
         [
             lambda: gym.make(
-                "GcpEnvMaxIters-v0",
+                spec,
                 graph=nx.gnp_random_graph(nodes, probability),
                 k=colors,
                 tabucol_iters=args.tabucol_iters,
                 tabucol_init=tabucol_init,
             )
-            for _ in range(0, 50)
+            for _ in range(0, 10)
         ]
     )
     test_envs = SubprocVectorEnv(
         [
             lambda: gym.make(
-                "GcpEnvMaxIters-v0",
+                spec,
                 graph=nx.gnp_random_graph(nodes, probability),
                 k=colors,
                 tabucol_iters=args.tabucol_iters,
@@ -120,7 +141,7 @@ if __name__ == "__main__":
 
     if args.input is not None:
         print(f"Loading policy: {args.input}")
-        policy.load_state_dict(torch.load(args.input))
+        policy.load_state_dict(torch.load(args.input, map_location=device))
 
     print("Setting up replay buffer and collectors...")
 
