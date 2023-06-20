@@ -2,7 +2,7 @@
 
 This code was written as part of our bachelor thesis titled: "Reinforcement learning for improved local search, applied to the graph coloring problem". This work was done at the [KTH Royal Institute of Technology](https://www.kth.se/en) in Stockholm, Sweden. This repository contains the code for the RLTCol algorithm, which is a hybrid heuristic algorithm for the graph coloring problem that uses reinforcement learning (RL).
 
-The RLTCol algorithm works by iteratively running the local search algorithm TabuCol, and running an RL agent. The two components pass solutions to each other. The paper can be read [here](./report/Report.pdf).
+The RLTCol algorithm works by iteratively running the local search algorithm TabuCol, and running an RL agent. The two components pass solutions to each other. The paper can be read [here](./paper/Paper.pdf).
 
 ## Code
 
